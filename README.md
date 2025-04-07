@@ -1,7 +1,9 @@
 # 🗂️ Node FS Task App
 
 A minimalist task management web app built with Node.js, Express.js, EJS, and TailwindCSS, designed to help users create, view, and manage tasks saved as plain text files.
+
 [Home Page](./screenshots/Home page.png)
+
 ## 🌟 Project Goal
 
 This project is part of my journey to mastering full-stack **backend development**. The focus here is to understand how to handle the file system, routing, templating engines, and deploy backend apps effectively.
