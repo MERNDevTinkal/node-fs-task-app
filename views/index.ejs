@@ -1,42 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Task Creater</title>
+  <title>Task Creator</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-  <div class="main w-full min-h-screen bg-zinc-900 p-6">
+<body class="bg-zinc-900 text-white font-sans">
+  <div class="container mx-auto px-4 py-10">
+    
+    <!-- Title -->
+    <h1 class="text-4xl font-bold text-center text-blue-400 mb-10"> Task Manager</h1>
+
     <!-- Form Section -->
-    <div class="form bg-zinc-800 p-6 rounded-xl shadow-md w-full max-w-xl mb-8">
-      <form  action="/create" method="post">
+    <div class="bg-zinc-800 p-8 rounded-2xl shadow-lg max-w-2xl mx-auto mb-12">
+      <form action="/create" method="post">
+        <label class="block text-lg font-medium mb-2">Title</label>
         <input
-          class="block px-5 py-3 bg-zinc-700 text-white w-full rounded-md outline-none mb-3 focus:ring-2 focus:ring-blue-500 transition-all"
-          type="text" placeholder="Title goes here" name="Title" />
+          type="text"
+          name="Title"
+          placeholder="Enter task title"
+          required
+          class="block w-full px-5 py-3 rounded-lg bg-zinc-700 text-white outline-none focus:ring-2 focus:ring-blue-500 transition mb-5"
+        />
+
+        <label class="block text-lg font-medium mb-2">Details</label>
         <textarea
-          class="block px-5 py-3 bg-zinc-700 text-white resize-none w-full rounded-md outline-none mb-3 h-32 focus:ring-2 focus:ring-blue-500 transition-all"
-          placeholder="Write your task details here" name="details"></textarea>
+          name="details"
+          placeholder="Write your task details..."
+          rows="5"
+          required
+          class="block w-full px-5 py-3 rounded-lg bg-zinc-700 text-white outline-none resize-none focus:ring-2 focus:ring-blue-500 transition mb-5"
+        ></textarea>
+
         <input
-          class="text-white bg-blue-600 hover:bg-blue-700 cursor-pointer w-full py-3 rounded-md font-semibold transition-all"
-          type="submit" value="Create Task" />
+          type="submit"
+          value="Create Task"
+          class="w-full bg-blue-600 hover:bg-blue-700 transition-colors py-3 rounded-lg font-semibold cursor-pointer"
+        />
       </form>
     </div>
 
     <!-- Tasks Section -->
-    <div class="tasks flex flex-wrap gap-5">
-      <% if (files.length > 0) { %>
-        <% files.forEach(function(val) { %>
-          <div class="task w-72 p-5 bg-zinc-800 rounded-md shadow hover:bg-zinc-700 transition">
-            <h1 class="text-white text-xl font-semibold mb-2"><%= val %></h1>
-            <a class="text-blue-500 hover:underline" href="/file/<%= val %>">Read More.</a>
-          </div>
-        <% }) %>
-      <% } else { %>
-        <h3 class="text-white text-xl">No tasks yet.</h3>
-      <% } %>
+    <div>
+      <h2 class="text-2xl font-semibold mb-6"> Your Tasks</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% if (files.length > 0) { %>
+          <% files.forEach(function(val) { %>
+            <div class="bg-zinc-800 p-5 rounded-xl shadow hover:shadow-xl transition hover:bg-zinc-700">
+              <h3 class="text-xl font-semibold mb-3 break-words"><%= val %></h3>
+              <div class="flex justify-between items-center text-sm">
+                <a href="/file/<%= val %>" class="text-blue-400 hover:underline">Read More</a>
+                <a href="/edit/<%= val %>" class="text-yellow-400 hover:underline">Edit File Name</a>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p class="text-gray-400">No tasks found. Create one above! </p>
+        <% } %>
+      </div>
     </div>
   </div>
 </body>
