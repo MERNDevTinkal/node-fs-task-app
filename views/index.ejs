@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Creater</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="main w-full min-h-screen bg-zinc-900 p-6">
+    <!-- Form Section -->
+    <div class="form bg-zinc-800 p-6 rounded-xl shadow-md w-full max-w-xl mb-8">
+      <form  action="/create" method="post">
+        <input
+          class="block px-5 py-3 bg-zinc-700 text-white w-full rounded-md outline-none mb-3 focus:ring-2 focus:ring-blue-500 transition-all"
+          type="text" placeholder="Title goes here" name="Title" />
+        <textarea
+          class="block px-5 py-3 bg-zinc-700 text-white resize-none w-full rounded-md outline-none mb-3 h-32 focus:ring-2 focus:ring-blue-500 transition-all"
+          placeholder="Write your task details here" name="details"></textarea>
+        <input
+          class="text-white bg-blue-600 hover:bg-blue-700 cursor-pointer w-full py-3 rounded-md font-semibold transition-all"
+          type="submit" value="Create Task" />
+      </form>
+    </div>
+
+    <!-- Tasks Section -->
+    <div class="tasks flex flex-wrap gap-5">
+      <% if (files.length > 0) { %>
+        <% files.forEach(function(val) { %>
+          <div class="task w-72 p-5 bg-zinc-800 rounded-md shadow hover:bg-zinc-700 transition">
+            <h1 class="text-white text-xl font-semibold mb-2"><%= val %></h1>
+            <a class="text-blue-500 hover:underline" href="/file/<%= val %>">Read More.</a>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <h3 class="text-white text-xl">No tasks yet.</h3>
+      <% } %>
+    </div>
+  </div>
+</body>
+
+</html>
